@@ -14,8 +14,15 @@ app.use(express.json());
 
 const messages = [];
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to this application" });
+app.get("/", async (req, res) => {
+  try {
+    res.status(420).json({
+      message: "Protected NextJS Webview Protocol",
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.get("/getMessages", (req, res) => {
