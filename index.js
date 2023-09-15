@@ -1,11 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const http = require("http").createServer(app);
+const http = require("http");
 const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+const server = http.createServer(app); // Create an HTTP server using the Express app
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
@@ -35,6 +37,6 @@ app.post("/sendMessage", (req, res) => {
   }
 });
 
-http.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
