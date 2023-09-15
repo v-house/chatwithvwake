@@ -9,6 +9,10 @@ app.use(bodyParser.json());
 
 const messages = [];
 
+app.get("/", (req, res) => {
+  res.json(["message": "Welcome to this application"]);
+});
+
 app.get("/getMessages", (req, res) => {
   const recentMessage = messages[messages.length - 1];
   if (recentMessage) {
